@@ -5,3 +5,5 @@ from .test_loginTestFailed import TestLoginFailedDoNotFillUsernameAndPassword
 from .test_loginTestFailed import TestLoginFailedWrongPassword
 from .test_loginTestFailed import TestLoginFailedWrongUsername
 from .test_loginTestFailed import TestLoginFailedWrongUsernameandWrongPassword
+from .test_AddtoCart import AddtoCart
+from .test_AddtoCartFailed import AddtoCartFailed

@@ -35,7 +35,7 @@ class LoginPage:
         get_url = self.browser.current_url
         
         if '/inventory.html'in get_url:
-            print("Website logged in successfully")
+            print("\nWebsite logged in successfully")
             return True
         else:
             print("Failed")

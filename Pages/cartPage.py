@@ -9,11 +9,10 @@ class CartPage:
       
         self.burger_menu_locator = get_locator("Inventory","burger_menu")
         self.logout_button_locator = get_locator("Inventory","logout_button")
-        self.cart_button_locator = get_locator("Inventory","cart_button")
-        self.cart_button_locator_2 = get_locator("Inventory","cart_button_2")
         self.cart_button_page_locator = get_locator("Inventory","cart_button_page")
         self.checkout_button = get_locator("Inventory","checkout_button")
         self.remove_sauce_labs_backpack_locator = get_locator("Inventory","remove_sauce_labs_backpack")
+        self.continue_shopping_button_locator = get_locator("Inventory","continue_shopping")
 
         self.continue_button = get_locator("Checkout","continue_button")
         self.first_name_locator = get_locator("Checkout","first_name")
@@ -23,6 +22,8 @@ class CartPage:
 
         self.finish_button = get_locator("Finish","finish_button")
         self.back_to_home_button = get_locator("Finish","back_to_home_button")
+
+        
  
     def click_cart_product(self, product):        
         """Click the cart button."""
@@ -85,6 +86,7 @@ class CartPage:
         else:
             print("Failed")
             return False
+
     
 
     def click_back_to_home_button(self):
@@ -92,11 +94,14 @@ class CartPage:
         time.sleep(3)
     
      
-    def click_remove_sauce_labs_backpack(self, product):        
-        """Click the cart button."""
-        self.browser.find_element(By.ID, product).click()
+    def click_remove_sauce_labs_backpack(self, remove_product):        
+        """Click the remove button."""
+        self.browser.find_element(By.ID, remove_product).click()
         time.sleep(2)
  
+    def click_continue_shopping(self):
+        self.browser.find_element(By.ID, self.continue_shopping_button_locator).click()
+        time.sleep(2)
 
    
  

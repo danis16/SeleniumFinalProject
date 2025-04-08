@@ -5,8 +5,9 @@ from Pages import LoginPage
 from Pages import CartPage
 from Library import read_config
 import time
+from selenium.webdriver.common.by import By
 
-class AddtoCart(unittest.TestCase):
+class AddtoCartFailed(unittest.TestCase):
 
     manyproducts = ["add-to-cart-sauce-labs-bike-light", "add-to-cart-sauce-labs-bolt-t-shirt", "add-to-cart-sauce-labs-fleece-jacket", "add-to-cart-sauce-labs-onesie"]
     product = "add-to-cart-sauce-labs-backpack"
@@ -32,11 +33,10 @@ class AddtoCart(unittest.TestCase):
                 # Verifikasi login berhasil
                 self.assertTrue(self.login_page.is_login_successfull())
     
-    def test_add_to_cart_a_until_finish(self):
+    def test_a_checkout_no_product(self):
        
                 self.login()
-
-                self.cart_page.click_cart_product(self.product)
+                
                 self.cart_page.click_cart_page()
 
                 self.assertTrue(self.cart_page.is_cart_page_successfull())
@@ -60,113 +60,110 @@ class AddtoCart(unittest.TestCase):
                 self.login_page.logout()    
 
                 print("add_to_cart_a_until_finish done")
-    
-    def test_add_to_cart_b_more_than_one_product_until_finish(self):
-                
-                self.login()
 
-                for products in self.manyproducts:
-                    with self.subTest(products=products):
-                        self.cart_page.click_cart_product(products)
-
-                self.cart_page.click_cart_page()
-
-                self.assertTrue(self.cart_page.is_cart_page_successfull())
-
-                self.cart_page.click_checkout_button()
-
-                self.cart_page.fill_first_name(self.first_name)
-
-                self.cart_page.fill_last_name(self.last_name)
-
-                self.cart_page.fill_postal_code(self.postal_code)
-
-                self.cart_page.click_continue_button()
-
-                self.cart_page.click_finish_button()
-
-                self.assertTrue(self.cart_page.is_checkout_successfull())
-
-                self.cart_page.click_back_to_home_button()
-
-                self.login_page.logout()      
-
-                print("add_to_cart_b_more_than_one_product_until_finish done")
-
-    def test_add_to_cart_c_more_than_one_product_then_remove_one_product(self):
-                
-                self.login()
-
-                for products in self.manyproducts:
-                    with self.subTest(products=products):
-                        self.cart_page.click_cart_product(products)
-                
-                time.sleep(3)
-
-                self.cart_page.click_cart_page()
-
-                self.assertTrue(self.cart_page.is_cart_page_successfull())
-
-                self.cart_page.click_remove_sauce_labs_backpack(self.remove_product)
-
-                self.cart_page.click_checkout_button()
-
-                self.cart_page.fill_first_name(self.first_name)
-
-                self.cart_page.fill_last_name(self.last_name)
-
-                self.cart_page.fill_postal_code(self.postal_code)
-
-                self.cart_page.click_continue_button()
-
-                self.cart_page.click_finish_button()
-
-                self.assertTrue(self.cart_page.is_checkout_successfull())
-
-                self.cart_page.click_back_to_home_button()
-
-                self.login_page.logout()      
-
-                print("add_to_cart_c_more_than_one_product_then_remove_one_product done")
-
-    def test_add_to_cart_d_and_continue_shopping_until_finish(self):
+    def test_b_checkout_no_product_not_fill_first_name_last_name_post_code(self):
        
                 self.login()
-
-                self.cart_page.click_cart_product(self.product)
+                
                 self.cart_page.click_cart_page()
 
                 self.assertTrue(self.cart_page.is_cart_page_successfull())
 
-                self.cart_page.click_continue_shopping()
-
-                for products in self.manyproducts:
-                    with self.subTest(products=products):
-                        self.cart_page.click_cart_product(products)
-
-                self.cart_page.click_cart_page()
-
                 self.cart_page.click_checkout_button()
 
-                self.cart_page.fill_first_name(self.first_name)
+                self.cart_page.fill_first_name("")
 
-                self.cart_page.fill_last_name(self.last_name)
+                self.cart_page.fill_last_name("")
 
-                self.cart_page.fill_postal_code(self.postal_code)
+                self.cart_page.fill_postal_code("")
 
                 self.cart_page.click_continue_button()
 
-                print ("success continue shopping")
-
-                self.cart_page.click_finish_button()
-
-                self.assertTrue(self.cart_page.is_checkout_successfull())
-
-                self.cart_page.click_back_to_home_button()
+                error_message = self.browser.find_element(By.CSS_SELECTOR,'[data-test="error"]').text
+                self.assertIn('First Name is required', error_message)
 
                 self.login_page.logout()    
 
-                print("add_to_cart_d_and_continue_shopping_until_finish done")
+                print("checkout_no_product_not_fill_first_name_last_name_post_code done")
+    
+   
+
+    def test_c_checkout_no_product_not_fill_first_name(self):
+       
+                self.login()
+                
+                self.cart_page.click_cart_page()
+
+                self.assertTrue(self.cart_page.is_cart_page_successfull())
+
+                self.cart_page.click_checkout_button()
+
+                self.cart_page.fill_first_name("")
+
+                self.cart_page.fill_last_name(self.last_name)
+
+                self.cart_page.fill_postal_code(self.postal_code)
+
+                self.cart_page.click_continue_button()
+
+                error_message = self.browser.find_element(By.CSS_SELECTOR,'[data-test="error"]').text
+                self.assertIn('First Name is required', error_message)
+
+                self.login_page.logout()    
+
+                print("checkout_no_product_not_fill_first_name done")
+        
+    def test_d_checkout_no_product_not_fill_last_name(self):
+       
+                self.login()
+                
+                self.cart_page.click_cart_page()
+
+                self.assertTrue(self.cart_page.is_cart_page_successfull())
+
+                self.cart_page.click_checkout_button()
+
+                self.cart_page.fill_first_name(self.first_name)
+
+                self.cart_page.fill_last_name("")
+
+                self.cart_page.fill_postal_code(self.postal_code)
+
+                self.cart_page.click_continue_button()
+
+                error_message = self.browser.find_element(By.CSS_SELECTOR,'[data-test="error"]').text
+                self.assertIn('Last Name is required', error_message)
+
+                self.login_page.logout()    
+
+                print("checkout_no_product_not_fill_last_name done")
+
+    def test_e_checkout_no_product_not_fill_last_name(self):
+       
+                self.login()
+                
+                self.cart_page.click_cart_page()
+
+                self.assertTrue(self.cart_page.is_cart_page_successfull())
+
+                self.cart_page.click_checkout_button()
+
+                self.cart_page.fill_first_name(self.first_name)
+
+                self.cart_page.fill_last_name(self.last_name)
+
+                self.cart_page.fill_postal_code("")
+
+                self.cart_page.click_continue_button()
+
+                error_message = self.browser.find_element(By.CSS_SELECTOR,'[data-test="error"]').text
+                self.assertIn('Postal Code is required', error_message)
+
+                self.login_page.logout()    
+
+                print("checkout_no_product_not_fill_last_name done")
+    
+   
 
     @classmethod   
     def tearDownClass(cls):
