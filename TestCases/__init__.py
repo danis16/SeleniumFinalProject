@@ -7,3 +7,4 @@ from .test_loginTestFailed import TestLoginFailedWrongUsername
 from .test_loginTestFailed import TestLoginFailedWrongUsernameandWrongPassword
 from .test_AddtoCart import AddtoCart
 from .test_AddtoCartFailed import AddtoCartFailed
+from .test_InventoryPage import InventoryPage

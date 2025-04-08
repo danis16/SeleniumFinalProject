@@ -7,7 +7,6 @@ class CartPage:
     def __init__(self, browser):
         self.browser = browser        
       
-        self.burger_menu_locator = get_locator("Inventory","burger_menu")
         self.logout_button_locator = get_locator("Inventory","logout_button")
         self.cart_button_page_locator = get_locator("Inventory","cart_button_page")
         self.checkout_button = get_locator("Inventory","checkout_button")

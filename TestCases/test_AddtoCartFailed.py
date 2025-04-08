@@ -9,9 +9,6 @@ from selenium.webdriver.common.by import By
 
 class AddtoCartFailed(unittest.TestCase):
 
-    manyproducts = ["add-to-cart-sauce-labs-bike-light", "add-to-cart-sauce-labs-bolt-t-shirt", "add-to-cart-sauce-labs-fleece-jacket", "add-to-cart-sauce-labs-onesie"]
-    product = "add-to-cart-sauce-labs-backpack"
-    remove_product = "remove-sauce-labs-bike-light"
     first_name = "Rose"
     last_name ="Diana"
     postal_code = "123456"
@@ -59,7 +56,7 @@ class AddtoCartFailed(unittest.TestCase):
 
                 self.login_page.logout()    
 
-                print("add_to_cart_a_until_finish done")
+                print("test_a_checkout_no_product done")
 
     def test_b_checkout_no_product_not_fill_first_name_last_name_post_code(self):
        
@@ -138,7 +135,7 @@ class AddtoCartFailed(unittest.TestCase):
 
                 print("checkout_no_product_not_fill_last_name done")
 
-    def test_e_checkout_no_product_not_fill_last_name(self):
+    def test_e_checkout_no_product_not_fill_postal_code(self):
        
                 self.login()
                 
@@ -161,7 +158,7 @@ class AddtoCartFailed(unittest.TestCase):
 
                 self.login_page.logout()    
 
-                print("checkout_no_product_not_fill_last_name done")
+                print("test_e_checkout_no_product_not_fill_postal_code done")
     
    
 
