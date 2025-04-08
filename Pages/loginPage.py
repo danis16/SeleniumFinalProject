@@ -12,6 +12,7 @@ class LoginPage:
         self.login_button_locator = get_locator("Login","login_button")        
         # Menambahkan locator untuk logout       
         self.burger_menu_locator = get_locator("Inventory","burger_menu")
+        self.close_button_locator = get_locator("Inventory","close_button")
         self.logout_button_locator = get_locator("Inventory","logout_button")
         
     def enter_username(self, username):
