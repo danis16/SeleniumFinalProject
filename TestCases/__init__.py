@@ -1,0 +1,7 @@
+from .test_loginTest import TestLoginSuccess
+from .test_loginTestFailed import TestLoginFailedDoNotFillPassword
+from .test_loginTestFailed import TestLoginFailedDoNotFillUsername
+from .test_loginTestFailed import TestLoginFailedDoNotFillUsernameAndPassword
+from .test_loginTestFailed import TestLoginFailedWrongPassword
+from .test_loginTestFailed import TestLoginFailedWrongUsername
+from .test_loginTestFailed import TestLoginFailedWrongUsernameandWrongPassword
