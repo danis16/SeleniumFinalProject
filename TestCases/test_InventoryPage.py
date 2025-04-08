@@ -40,7 +40,8 @@ class Inventory(unittest.TestCase):
         print("success filter")
         self.login_page.logout()     
 
-    def test_open_product(self):
+    def test_b_open_product(self):
+
         self.login()
         for products in self.product:
                     with self.subTest(products=products):
@@ -49,7 +50,7 @@ class Inventory(unittest.TestCase):
 
         self.login_page.logout()     
     
-    def test_open_product_and_addtocart(self):
+    def test_c_open_product_and_addtocart(self):
         self.login()
         for products in self.product:
                     with self.subTest(products=products):
@@ -59,7 +60,7 @@ class Inventory(unittest.TestCase):
         time.sleep(5)
         self.login_page.logout()     
     
-    def test_open_and_close_menu(self):
+    def test_d_open_and_close_menu(self):
         self.login()
         self.inventory_page.click_open_menu()
         self.inventory_page.click_close_menu()
